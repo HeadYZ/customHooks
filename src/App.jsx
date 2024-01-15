@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useEffect } from 'react'
+import { useRef, useState, useCallback } from 'react'
 
 import Places from './components/Places.jsx'
 import Modal from './components/Modal.jsx'
@@ -65,7 +65,7 @@ function App() {
 
 			setModalIsOpen(false)
 		},
-		[userPlaces]
+		[userPlaces, setUserPlaces]
 	)
 
 	function handleError() {
@@ -81,9 +81,7 @@ function App() {
 			</Modal>
 
 			<Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
-				<DeleteConfirmation
-					onCancel={handleStopRemovePlace} // onConfirm={handleRemovePlace}
-				/>
+				<DeleteConfirmation onCancel={handleStopRemovePlace} onConfirm={handleRemovePlace} />
 			</Modal>
 
 			<header>
@@ -104,8 +102,7 @@ function App() {
 					/>
 				)}
 
-				<AvailablePlaces // onSelectPlace={handleSelectPlace}
-				/>
+				<AvailablePlaces onSelectPlace={handleSelectPlace} />
 			</main>
 		</>
 	)
