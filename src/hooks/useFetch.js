@@ -21,7 +21,7 @@ const useFetch = (fetchFn,initialValue) => {
 		fetchData()
 	}, [fetchFn])
 
-	return { isFetching, error, fetchedData,setFetchedData }
+	return { isFetching, error, fetchedData,setFetchedData, setError, setIsFetching }
 }
 
 export default useFetch
