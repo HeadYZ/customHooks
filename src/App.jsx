@@ -16,7 +16,7 @@ function App() {
 
 	const [modalIsOpen, setModalIsOpen] = useState(false)
 
-	const { isFetching, error, fetchedData } = useFetch(fetchUserPlaces)
+	const { isFetching, error, fetchedData: userPlaces, setFetchedData: setUserPlaces } = useFetch(fetchUserPlaces, [])
 
 	function handleStartRemovePlace(place) {
 		setModalIsOpen(true)
@@ -81,7 +81,9 @@ function App() {
 			</Modal>
 
 			<Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
-				<DeleteConfirmation onCancel={handleStopRemovePlace} onConfirm={handleRemovePlace} />
+				<DeleteConfirmation
+					onCancel={handleStopRemovePlace} // onConfirm={handleRemovePlace}
+				/>
 			</Modal>
 
 			<header>
@@ -102,7 +104,8 @@ function App() {
 					/>
 				)}
 
-				<AvailablePlaces onSelectPlace={handleSelectPlace} />
+				<AvailablePlaces // onSelectPlace={handleSelectPlace}
+				/>
 			</main>
 		</>
 	)
